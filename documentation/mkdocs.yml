@@ -1,0 +1,97 @@
+site_name: EmbedCache Documentation
+site_url: https://docs.skelfresearch.com/embedcache/
+site_description: High-performance Rust library for text embedding with caching capabilities
+site_author: Skelf Research
+
+repo_name: skelfresearch/embedcache
+repo_url: https://github.com/skelfresearch/embedcache
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+
+plugins:
+  - search
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.details
+  - admonition
+  - tables
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/skelfresearch/embedcache
+
+extra_css:
+  - assets/stylesheets/extra.css
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - getting-started/index.md
+    - Installation: getting-started/installation.md
+    - Quick Start: getting-started/quick-start.md
+    - Configuration: getting-started/configuration.md
+  - User Guide:
+    - user-guide/index.md
+    - Running as Service: user-guide/running-service.md
+    - Library Usage: user-guide/library-usage.md
+    - Chunking Strategies: user-guide/chunking.md
+    - Embedding Models: user-guide/embedding-models.md
+    - Caching: user-guide/caching.md
+  - API Reference:
+    - api-reference/index.md
+    - REST API: api-reference/rest-api.md
+    - Rust API: api-reference/rust-api.md
+  - Advanced:
+    - advanced/index.md
+    - Custom Chunkers: advanced/custom-chunkers.md
+    - Custom Embedders: advanced/custom-embedders.md
+    - LLM Chunking: advanced/llm-chunking.md
+    - Performance: advanced/performance.md
+  - Deployment:
+    - deployment/index.md
+    - Docker: deployment/docker.md
+    - Systemd: deployment/systemd.md
+    - Reverse Proxy: deployment/reverse-proxy.md
+  - Architecture:
+    - architecture/index.md
+    - Design Decisions: architecture/design.md
+    - Module Structure: architecture/modules.md
+  - Troubleshooting:
+    - troubleshooting/index.md
+    - Common Issues: troubleshooting/common-issues.md
+    - FAQ: troubleshooting/faq.md
+  - Changelog: changelog.md

@@ -1,0 +1,42 @@
+/* Custom styles for EmbedCache documentation */
+
+:root {
+  --md-primary-fg-color: #4051b5;
+  --md-accent-fg-color: #526cfe;
+}
+
+/* Code block styling */
+.highlight code {
+  font-size: 0.85em;
+}
+
+/* Admonition styling */
+.admonition {
+  border-radius: 4px;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+}
+
+/* API endpoint styling */
+.api-endpoint {
+  background-color: var(--md-code-bg-color);
+  padding: 0.5em 1em;
+  border-radius: 4px;
+  margin: 1em 0;
+}
+
+.api-endpoint .method {
+  font-weight: bold;
+  margin-right: 0.5em;
+}
+
+.api-endpoint .method.post {
+  color: #49cc90;
+}
+
+.api-endpoint .method.get {
+  color: #61affe;
+}

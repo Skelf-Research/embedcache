@@ -23,29 +23,47 @@
 //! - `DB_PATH`: SQLite database path (default: cache.db)
 //! - `DB_JOURNAL_MODE`: SQLite journal mode (default: wal)
 //! - `ENABLED_MODELS`: Comma-separated list of enabled models (default: AllMiniLML6V2)
+//! - `LLM_PROVIDER`: LLM provider for intelligent chunking (ollama, openai, anthropic)
+//! - `LLM_MODEL`: LLM model name (default: llama3)
+//! - `LLM_BASE_URL`: LLM API base URL
+//! - `LLM_API_KEY`: LLM API key (for OpenAI/Anthropic)
+//! - `LLM_TIMEOUT`: LLM request timeout in seconds (default: 60)
 
-use actix_web::{web, App, HttpServer};
-use embedcache::{AppState, ServerConfig, initialize_db_pool, initialize_models, initialize_chunkers, 
-                 process_url, embed_text, list_supported_features};
 use actix_web::middleware::Logger;
-use dotenv::dotenv;
-use apistos::{spec::Spec, info::Info, server::Server, app::{BuildConfig, OpenApiWrapper}};
-use apistos::{RapidocConfig, RedocConfig, ScalarConfig, SwaggerUIConfig};
+use actix_web::{web, App, HttpServer};
+use apistos::app::{BuildConfig, OpenApiWrapper};
 use apistos::web::{get, post, resource, scope};
+use apistos::{info::Info, server::Server, spec::Spec};
+use apistos::{RapidocConfig, RedocConfig, ScalarConfig, SwaggerUIConfig};
+use dotenv::dotenv;
+
+use embedcache::{
+    embed_text, initialize_chunkers, initialize_db_pool, initialize_models,
+    list_supported_features, process_url, AppState, LLMConfig, ServerConfig,
+};
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     // Load environment variables from .env file
     dotenv().ok();
-    
+
     // Load configuration
     let config = ServerConfig::from_env().expect("Failed to load configuration");
 
-    let db_pool = initialize_db_pool(&config).await.expect("Failed to initialize database pool");
+    let db_pool = initialize_db_pool(&config)
+        .await
+        .expect("Failed to initialize database pool");
     let models = initialize_models(&config).expect("Failed to initialize models");
-    let chunkers = initialize_chunkers();
 
-    let app_state = web::Data::new(AppState { db_pool, models, chunkers });
+    // Initialize LLM config if available
+    let llm_config = LLMConfig::from_server_config(&config);
+    let chunkers = initialize_chunkers(llm_config.as_ref());
+
+    let app_state = web::Data::new(AppState {
+        db_pool,
+        models,
+        chunkers,
+    });
 
     let server_addr = format!("{}:{}", config.host, config.port);
     println!("Starting server at {}", server_addr);
@@ -54,7 +72,9 @@ async fn main() -> std::io::Result<()> {
         let spec = Spec {
             info: Info {
                 title: "Embedcache API".to_string(),
-                description: Some("This is the embed cache API!".to_string()),
+                description: Some(
+                    "High-performance text embedding API with caching capabilities".to_string(),
+                ),
                 ..Default::default()
             },
             servers: vec![Server {
@@ -68,10 +88,11 @@ async fn main() -> std::io::Result<()> {
             .document(spec)
             .wrap(Logger::default())
             .app_data(app_state.clone())
-            .service(scope("/v1")
-                .service(resource("/embed").route(post().to(embed_text)))
-                .service(resource("/process").route(post().to(process_url)))
-                .service(resource("/params").route(get().to(list_supported_features)))
+            .service(
+                scope("/v1")
+                    .service(resource("/embed").route(post().to(embed_text)))
+                    .service(resource("/process").route(post().to(process_url)))
+                    .service(resource("/params").route(get().to(list_supported_features))),
             )
             .build_with(
                 "/openapi.json",

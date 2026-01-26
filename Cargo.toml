@@ -4,11 +4,11 @@ version = "0.1.0"
 edition = "2021"
 description = "High-performance text embedding service with caching capabilities"
 license = "GPL-3.0"
-repository = "https://github.com/sokratis-xyz/embedcache"
+repository = "https://github.com/skelfresearch/embedcache"
 keywords = ["embedding", "cache", "nlp", "vector", "search"]
 categories = ["web-programming::http-server", "science"]
-documentation = "https://docs.rs/embedcache"
-homepage = "https://github.com/sokratis-xyz/embedcache"
+documentation = "https://docs.skelfresearch.com/embedcache/"
+homepage = "https://skelfresearch.com"
 authors = ["Dipankar Sarkar <me@dipankar.name>"]
 readme = "README.md"
 
@@ -31,10 +31,10 @@ anyhow = "1.0"
 async-trait = "0.1.80"
 async-sqlite = "0.2.2"
 tokio = { version = "1.38.0", features = ["full"] }
-apistos = { version="0.2", features = ["extras", "qs_query", "rapidoc", "redoc", "scalar", "swagger-ui"] }
+apistos = { version = "0.2", features = ["extras", "qs_query", "rapidoc", "redoc", "scalar", "swagger-ui"] }
 schemars = { package = "apistos-schemars", version = "0.8", features = ["chrono", "uuid1", "url", "rust_decimal"] }
 dotenv = "0.15"
-usearch = "2.19.6"
+reqwest = { version = "0.11", features = ["json"] }
 
 [[example]]
 name = "simple_usage"
