@@ -17,7 +17,7 @@
 //!
 //! ```toml
 //! [dependencies]
-//! embedcache = "0.1.0"
+//! embedcache = "0.1"
 //! ```
 //!
 //! ## Examples
@@ -26,15 +26,9 @@
 //!
 //! ```no_run
 //! use embedcache::{FastEmbedder, Embedder};
-//! use fastembed::{TextEmbedding, InitOptions, EmbeddingModel};
+//! use fastembed::{InitOptions, EmbeddingModel};
 //!
 //! # async fn example() -> Result<(), Box<dyn std::error::Error>> {
-//! let model = TextEmbedding::try_new(InitOptions {
-//!     model_name: EmbeddingModel::BGESmallENV15,
-//!     show_download_progress: true,
-//!     ..Default::default()
-//! })?;
-//!
 //! let embedder = FastEmbedder {
 //!     options: InitOptions::new(EmbeddingModel::BGESmallENV15),
 //! };

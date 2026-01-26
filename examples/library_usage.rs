@@ -7,7 +7,7 @@
 use embedcache::{
     FastEmbedder, Embedder
 };
-use fastembed::{TextEmbedding, InitOptions, EmbeddingModel};
+use fastembed::{InitOptions, EmbeddingModel};
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {

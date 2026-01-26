@@ -1,6 +1,6 @@
 [package]
 name = "embedcache"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "High-performance text embedding service with caching capabilities"
 license = "GPL-3.0"
