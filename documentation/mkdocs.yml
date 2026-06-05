@@ -3,8 +3,9 @@ site_url: https://docs.skelfresearch.com/embedcache/
 site_description: High-performance Rust library for text embedding with caching capabilities
 site_author: Skelf Research
 
-repo_name: skelfresearch/embedcache
-repo_url: https://github.com/skelfresearch/embedcache
+repo_name: Skelf-Research/embedcache
+edit_uri: edit/main/documentation/docs/
+repo_url: https://github.com/Skelf-Research/embedcache
 
 theme:
   name: material
