@@ -7,6 +7,12 @@
 [![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](https://opensource.org/licenses/GPL-3.0)
 [![Rust](https://img.shields.io/badge/rust-1.70%2B-orange.svg)](https://www.rust-lang.org)
 
+<p align="center">
+  <a href="https://embedcache.skelfresearch.com"><b>Website</b></a> •
+  <a href="https://docs.skelfresearch.com/embedcache">Documentation</a> •
+  <a href="https://skelfresearch.com">Skelf Research</a>
+</p>
+
 EmbedCache is a Rust library and REST API that generates text embeddings locally and caches the results. No external API calls, no per-token billing, no rate limits. Just fast, local embeddings with 22+ models.
 
 ---
@@ -208,3 +214,15 @@ GPL-3.0. See [LICENSE](LICENSE).
 ---
 
 Built by [Skelf Research](https://skelfresearch.com) with [FastEmbed](https://github.com/qdrant/fastembed) and [Actix-web](https://actix.rs/).
+
+---
+
+## Part of Skelf Research
+
+`embedcache` is built by **[Skelf Research](https://skelfresearch.com)** — an independent UK AI research lab publishing production-grade open-source projects.
+
+🌐 [Website](https://embedcache.skelfresearch.com) · 📚 [Documentation](https://docs.skelfresearch.com/embedcache) · 🔬 [All projects](https://skelfresearch.com/projects) · 🤗 [Hugging Face](https://huggingface.co/skelfresearch)
+
+**Related projects:** [memista](https://memista.skelfresearch.com) (vector search for Rust) · [polymathy](https://polymathy.skelfresearch.com) (answer-engine service) · [slorg](https://slorg.skelfresearch.com) (search that thinks first)
+
+<sub>Released under MIT / Apache-2.0. © Skelf Research Limited.</sub>
